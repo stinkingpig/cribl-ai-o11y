@@ -1,0 +1,3 @@
+policies:
+  - object: '/authorize/roles'
+    actions: ['GET']

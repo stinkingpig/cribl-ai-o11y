@@ -1,0 +1,21 @@
+# Cribl AI proxy (OpenAI-compatible completions + token endpoints).
+# The platform strips client Authorization headers, so the app acquires a token via
+# POST /api/proxy/token (no auth), stores it in pack KV (aiProxyToken), and the proxy
+# injects it here at request time.
+ai.cribl.cloud:
+  timeout: 30000
+  paths:
+    allowlist:
+      - /api/
+  headers:
+    inject:
+      Authorization: "'Bearer ' + kv.aiProxyToken"
+
+ai.cribl-staging.cloud:
+  timeout: 30000
+  paths:
+    allowlist:
+      - /api/proxy/
+  headers:
+    inject:
+      Authorization: "'Bearer ' + kv.aiProxyToken"
