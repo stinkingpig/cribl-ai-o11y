@@ -6,12 +6,12 @@ The Cribl AI Observability app gives teams one place to search, investigate, and
 
 | **Feature**                         | **Details**                                                                                                                  |
 | ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| **Usage & Cost Dashboard**          | Spending trends, token consumption, top users and models, LLM efficiency anti-patterns, and an activity heatmap.             |
+| **Usage & Cost Dashboard**          | Spending trends, token consumption, top users and models, LLM efficiency anti-patterns, and an activity heatmap. Who is using which AI tools, how much they are using them, and the associated token and dollar costs over time.           |
 | **Security & Compliance Dashboard** | Sensitive data exposure rates, security findings by type and user, tool-call audit, content risk indicators.                 |
-| **Sessions & Traces**               | End-to-end trace visibility — filterable session list, span timeline, full prompt/response/tool-call payloads.               |
+| **Sessions & Traces**               | End-to-end trace visibility, with a filterable session list, span timeline, and full prompt/response/tool-call payloads.               |
 | **AI Insights**                     | Conversational AI agent for querying AI usage and sensitive data issues across your org; Usage & Cost and Security personas. |
 | **Org View**                        | Hierarchical roll-up of spend, tokens, and requests joined against an org hierarchy lookup.                                  |
-| **Goals & Monitors**                | User-defined monitors continuously evaluated against live data, with persistent session history.                             |
+| **Goals & Monitors**                | User-defined monitors are continuously evaluated against live data, with persistent session history.                             |
 
 ## Data Sources
 
@@ -33,6 +33,8 @@ The Setup Wizard lets admins onboard one or more AI data sources. Each source fe
 | ------------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------ |
 | `AI-o11y`           | Raw spans — full prompts, responses, tool calls, token counts, cost    | Sessions, Trace detail, Security dashboard, AI Insights security persona |
 | `AI-o11y-analytics` | Privacy-safe aggregates — token counts, cost, model/user identity only | Usage & Cost dashboard, Org View, AI Insights consumption persona        |
+
+The Cribl AI Observability app requires a Search Lakehouse engine. These datasets will be created in the selected engine by the setup process.
 
 ## Stream Pack
 
@@ -62,7 +64,7 @@ Full access is granted only for built-in role IDs: `admin`, `search_admin`, `str
 
 1. Navigate to **Settings → Setup** (admin only).
 2. **Choose data sources** — select which AI tools to onboard (Aperture, Claude, OpenAI, Cursor, etc.).
-3. **Select infrastructure** — pick a Search engine and a Stream config group.
+3. **Select infrastructure** — pick a Search Lakehouse engine and a Stream config group.
 4. **Configure datasets** — set dataset names (defaults to `AI-o11y` and `AI-o11y-analytics`).
 5. **Upload org lookup** — optionally upload a CSV org hierarchy to enable the Org View.
 6. **Deploy** — the wizard pushes all pipelines, datasets, and lookups to Cribl via API.
